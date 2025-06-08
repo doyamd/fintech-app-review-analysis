@@ -1,28 +1,29 @@
+# assign_themes.py
 import pandas as pd
 
-# Load reviews
-df = pd.read_csv("data/reviews_with_sentiment.csv")
-
-# Define themes and associated keywords (based on extracted TF-IDF keywords + manual grouping)
+# Define theme keyword sets
 themes = {
-    "User Interface & Experience": ["app", "nice", "good", "best", "amazing", "easy", "use", "interface"],
-    "Account Access Issues": ["login", "work", "working", "doesn", "don", "update"],
-    "Transaction Performance": ["transfer", "slow", "network", "time", "service"],
-    "Customer Support": ["support", "response", "help"],
-    "Positive Feedback": ["great", "excellent", "friendly", "wow", "super app"],
+    "User Experience": ["app", "interface", "design", "easy use", "layout", "navigation", "nice"],
+    "Reliability": ["crash", "fail", "bug", "slow", "network", "hang", "freeze"],
+    "Transaction": ["transfer", "send", "receive", "deposit", "withdraw", "payment", "money"],
+    "Customer Support": ["support", "help", "service", "assist", "response"],
+    "Access Issues": ["login", "update", "register", "otp", "password", "access"]
 }
 
+# Load data
+df = pd.read_csv("data/reviews_with_sentiment.csv")
 
-# Function to assign themes based on keyword match
-def assign_review_themes(review):
-    review = str(review).lower()
-    matched_themes = [theme for theme, keywords in themes.items() if any(kw in review for kw in keywords)]
-    return ', '.join(matched_themes) if matched_themes else 'Uncategorized'
+def detect_themes(text):
+    text = str(text).lower()
+    matched = []
+    for theme, keywords in themes.items():
+        if any(keyword in text for keyword in keywords):
+            matched.append(theme)
+    return ", ".join(matched) if matched else "Other"
 
-# Apply to all reviews
-df["themes"] = df["review"].apply(assign_review_themes)
+# Assign themes
+df['themes'] = df['review'].apply(detect_themes)
 
-# Save to CSV
+# Save results
 df.to_csv("data/reviews_with_themes.csv", index=False)
-
-print("Themes assigned and saved to data/reviews_with_themes.csv")
+print("Themes assigned and saved to data/reviews_with_themes.csv.")
