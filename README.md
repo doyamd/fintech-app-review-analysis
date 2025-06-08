@@ -21,17 +21,33 @@ This repository analyzes user reviews of Ethiopian banking apps to uncover senti
 
 ```
 .
+├── .github/
+│   └── workflows/
+│       └── preprocessing.yml              # GitHub Actions workflow for preprocessing
 ├── cleaned_data/
-│   └── cleaned_reviews.csv               # Preprocessed review dataset
+│   └── cleaned_reviews.csv                # Cleaned and merged raw reviews
 ├── data/
-│   ├── reviews_with_sentiment.csv        # Reviews with sentiment labels
-│   ├── keywords_per_bank.csv             # Top keywords per bank
-│   └── reviews_with_themes.csv           # Final structured output
-├── sentiment_and_preprocess.py           # Preprocessing and sentiment classification
-├── extract_keywords.py                   # TF-IDF keyword extraction
-├── assign_themes.py                      # Manual/rule-based theme assignment
-├── requirements.txt
+│   ├── all_banks_reviews.csv              # Combined reviews per bank
+│   ├── bank_keywords.csv                  # Keywords grouped by bank
+│   ├── bank_of_abyssinia_reviews.csv      # Abyssinia reviews with metadata
+│   ├── commercial_bank_of_ethiopia_...    # CBE reviews with metadata
+│   ├── dashen_bank_reviews.csv            # Dashen reviews with metadata
+│   ├── reviews_with_sentiment.csv         # Reviews + sentiment label & score
+│   └── reviews_with_themes.csv            # Reviews + assigned themes
+├── results/
+│   └── tfidf_top_keywords.csv             # Top TF-IDF keywords per bank
+├── task-1/
+│   ├── preprocess_reviews.py              # Cleans and structures raw review data
+│   └── scrape_reviews.py                  # Scrapes reviews from Google Play Store
+├── task-2/
+│   ├── aggregate_sentiment.py             # Combines sentiment data
+│   ├── assign_themes.py                   # Assigns themes based on keywords
+│   ├── extract_keywords.py                # TF-IDF keyword extraction
+│   └── sentiment_analysis.py              # Uses BERT for review sentiment classification
+├── requirements.txt                       # Python package requirements
+├── .gitignore
 └── README.md
+
 ```
 
 ---
