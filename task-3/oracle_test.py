@@ -1,10 +1,7 @@
 import cx_Oracle
 import pandas as pd
+from config import username, password, dsn
 
-# Connection details
-username = "BANK_REVIEWS"
-password = "12345"
-dsn = "localhost:1521/XEPDB1"
 
 connection = None
 cursor = None
