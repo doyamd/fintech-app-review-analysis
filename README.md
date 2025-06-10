@@ -3,10 +3,6 @@
 ---
 This repository analyzes user reviews of Ethiopian banking apps to uncover sentiment trends and key themes affecting user satisfaction. The workflow includes scraping reviews from the Google Play Store, preprocessing the text, performing sentiment analysis using NLP models, and extracting thematic insights through keyword clustering.
 
----
-
-## Tools & Technologies
-
 - **Python** 🐍
 - **google-play-scraper** – Collect app reviews
 - **pandas** – Data manipulation
